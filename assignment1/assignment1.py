@@ -23,6 +23,14 @@ def calc(num1, num2, operation="multiply"):
             return num1 / num2
     elif operation == "modulo":
         return num1 % num2
+    elif operation == "int_divide":
+        if num2 == 0:
+            return "You can't divide by 0!"
+        else:
+            return num1 // num2
+    elif operation == "power":
+        return num1 ** num2
+    
     
 
 
@@ -58,7 +66,11 @@ def grade(*scores):
 
 
 def repeat(string, count):
-    return string * count
+    result = ""
+    
+    for i in range(count):
+        result += string
+    return result
 
 
 def student_scores(score_type, **kwargs):
@@ -70,15 +82,21 @@ def student_scores(score_type, **kwargs):
         return "Invalid score type."
 
 def titleize(string):
-    little_words = ["a", "an", "the", "and", "but", "or", "for", "nor", "On", "at", "to", "from", "by"]
+    little_words = ["a", "on", "an", "the", "of", "and", "is", "in"]
     words = string.split()
-    titleized_words = []
+
+
     for i, word in enumerate(words):
-        if i == 0 or word not in little_words:
-            titleized_words.append(word.capitalize())
+        lower_word = word.lower()
+
+        if i == 0 or i == len(words) -1:
+            words[i] = word.capitalize()
+        elif lower_word in little_words:
+            words[i] = lower_word
         else:
-            titleized_words.append(word)
-    return " ".join(titleized_words)
+            words[i] = word.capitalize()
+
+    return " ".join(words)
 
 def hangman(word, guesses):
     result = ""
