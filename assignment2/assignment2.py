@@ -85,7 +85,6 @@ def employee_dict(row):
             employee[field] = row[index]
     return employee
 
-print(employee_dict(employees["rows"][0]))
 
 #task 9
 def all_employees_dict():
@@ -163,7 +162,7 @@ def write_sorted_list():
 
     converted_list = list(
         map(
-            lambda x: (x[0], x[1].strftime("%B %d, %Y")),
+            lambda x: (x[0], datetime.strftime(x[1], "%B %d, %Y")),
             minutes_list
         )
     )
@@ -171,8 +170,8 @@ def write_sorted_list():
     with open("./minutes.csv", "w") as file:
         writer = csv.writer(file)
         writer.writerow(minutes1["fields"])
-        writer.writerows(converted_list) # type: ignore
+        writer.writerows(converted_list) 
 
-    return converted_list # type: ignore
-write_sorted_list()
+    return converted_list 
+
 

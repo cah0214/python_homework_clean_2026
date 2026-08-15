@@ -25,7 +25,8 @@ except Exception as e:
     stack_trace = list()
     for trace in trace_back:
         stack_trace.append(f'File : {trace[0]}, Func.Name : {trace[2]}, Line No : {trace[1]}, Message : {trace[3]}')
-            
+
+    message = str(e)        
     if message:
         print(f"Exception message : {message}")
 
