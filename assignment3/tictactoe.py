@@ -51,29 +51,34 @@ class Board:
 
         # Check rows
         for i in range(3):
-            if self.board_array[0][i] != "":
+            if self.board_array[i][0] != "":
                 if (
-                    self.board_array[0][i] == self.board_array[1][i] and
-                    self.board_array[1][i] == self.board_array[2][i]    
+                    self.board_array[i][0] == self.board_array[i][1] and
+                    self.board_array[i][1] == self.board_array[i][2]    
                 ):
                         win = True
                         break
         # Check Columns
         if not win:
             for i in range(3):
-                if self.board_array[i][0] != "":
+                if self.board_array[0][i] != "":
                     if (
-                        self.board_array[i][0] == self.board_array[i][1] and
-                        self.board_array[i][1] == self.board_array[i][2]
+                        self.board_array[0][i] == self.board_array[1][i] and
+                        self.board_array[1][i] == self.board_array[2][i]
                     ):
                             win = True
                             break
         # Check Diagnals
         if not win:
-            if self.board_array[1][1] != "":
+            if self.board_array[1][1] != " ":
                 if (
                     self.board_array[0][0] == self.board_array[1][1] and
                     self.board_array[2][2] == self.board_array[1][1]
+                ):
+                    win = True
+                if (
+                    self.board_array[0][2] == self.board_array[1][1]
+                    and self.board_array[2][0] == self.board_array[1][1]
                 ):
                     win = True
                 
@@ -88,7 +93,8 @@ class Board:
 
         for row in self.board_array:
             if " " in row:
-                cat = Falsebreak
+                cat = False
+                break
         if cat:
             return(True, "Cat's Game.")
         # Otherwise game continues
