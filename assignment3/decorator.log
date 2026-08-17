@@ -1,0 +1,14 @@
+python3 log-decorator.py
+cat decorator.log
+function: hello
+positional parameters: none
+keyword parameters: none
+return: None
+function: positional_function
+positional parameters: [1, 2, 3]
+keyword parameters: none
+return: True
+function: keyword_function
+positional parameters: none
+keyword parameters: {'name': 'Crystal', 'course': 'Python'}
+return: <function logger_decorator at 0x101b11a60>
