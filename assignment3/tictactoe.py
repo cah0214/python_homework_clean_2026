@@ -19,7 +19,7 @@ class Board:
             [" ", " ", " "],
             [" ", " ", " "]
         ]
-        self.turn = "x"
+        self.turn = "X"
 
     def __str__(self):
         lines = []
@@ -28,7 +28,7 @@ class Board:
         lines.append(f" {self.board_array[1][0]} | {self.board_array[1][1]} | {self.board_array[1][2]} \n")
         lines.append(f"-----------\n")
         lines.append(f" {self.board_array[2][0]} | {self.board_array[2][1]} | {self.board_array[2][2]} \n")
-        return "\n".join(lines)
+        return "".join(lines)
 
     def move(self, move_string):
         if move_string not in Board.valid_moves:
@@ -47,57 +47,55 @@ class Board:
             self.turn = "X"
 
     def whats_next(self):
-        cat = True
-        for i in range(3):
-            for j in range(3):
-                if self.board_array[i][j] == " ":
-                    cat = False
-                else:
-                    continue
-                break
-            if cat:
-                return(True, "Cat's Game.")
-            win = False
+        win = False
 
-            # Check rows
-            for i in range(3):
-                if self.board_array[0][i] != "":
-                    if (
-                        self.board_array[0][i] == self.board_array[1][i] and
-                        self.board_array[1][i] == self.board_array[2][i]    
-                    ):
+        # Check rows
+        for i in range(3):
+            if self.board_array[0][i] != "":
+                if (
+                    self.board_array[0][i] == self.board_array[1][i] and
+                    self.board_array[1][i] == self.board_array[2][i]    
+                ):
                         win = True
                         break
-            # Check Columns
-            if not win:
-                for i in range(3):
-                    if self.board_array[i][0] != "":
-                        if (
-                            self.board_array[i][0] == self.board_array[i][1] and
-                            self.board_array[i][1] == self.board_array[i][2]
-                        ):
+        # Check Columns
+        if not win:
+            for i in range(3):
+                if self.board_array[i][0] != "":
+                    if (
+                        self.board_array[i][0] == self.board_array[i][1] and
+                        self.board_array[i][1] == self.board_array[i][2]
+                    ):
                             win = True
                             break
-            # Check Diagnals
-            if not win:
-                if self.board_array[1][1] != "":
-                    if (
-                        self.board_array[0][0] == self.board_array[1][1] and
-                        self.board_array[2][2] == self.board_array[1][1]
-                    ):
-                        win = True
+        # Check Diagnals
+        if not win:
+            if self.board_array[1][1] != "":
+                if (
+                    self.board_array[0][0] == self.board_array[1][1] and
+                    self.board_array[2][2] == self.board_array[1][1]
+                ):
+                    win = True
                 
-            if not win:
-                if self.turn == "X":
-                    return (False, "X's turn.")
-                else:
-                    return (False, "O's turn.")
+        # Check winner
+        if win:
+            if self.turn == "O":
+                return (True, "X wins!")
             else:
-                if self.turn == "0":
-                    return (True, "X wins!")
-                else:
-                    return (True, "O wins!")
+                return(True, "O wins!")
+        # Check for Cat's Game
+        cat = True
 
+        for row in self.board_array:
+            if " " in row:
+                cat = Falsebreak
+        if cat:
+            return(True, "Cat's Game.")
+        # Otherwise game continues
+        if self.turn == "X":
+            return (False, "X's turn.")
+        else:
+            return (False, "O's turn.")
 board = Board()
 game_over = False
 

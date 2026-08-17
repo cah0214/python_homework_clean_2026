@@ -33,6 +33,7 @@ def hello():
 @logger_decorator
 def positional_function(*args):
     return True
+
 @logger_decorator
 def keyword_function(**kwargs):
     return logger_decorator
