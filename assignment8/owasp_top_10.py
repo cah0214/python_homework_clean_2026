@@ -1,3 +1,5 @@
+# Task 6; Scrape the OWASP Top 10
+
 import pandas as pd 
 
 from selenium import webdriver

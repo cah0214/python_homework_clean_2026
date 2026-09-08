@@ -84,7 +84,7 @@ try:
                 author_names.append(author_name)
 
         authors = "; ".join(author_names)
-        print("Authors:", authors)
+        print("Author:", authors)
 
         format_div = entry.find_element(
             By.CSS_SELECTOR, "div.cp-format-info"
@@ -93,12 +93,12 @@ try:
             By.CSS_SELECTOR, "span.display-info-primary"
         )
 
-        format_year = format_year_element.text.replace("|n", "").strip()
+        format_year = format_year_element.text.replace("\n", " ").strip()
         print("Format-Year:", format_year)
 
         book_data = {
             "Title": title,
-            "Authors": authors,
+            "Author": authors,
             "Format-Year": format_year
         }
         results.append(book_data)
