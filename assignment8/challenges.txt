@@ -1,0 +1,8 @@
+One challege i had was finding the correct XPath for the OWASP Top 
+10 links. My first XPath returned zero results because
+the website structure was different from what I expected. I 
+examined the links and changed the XPath so it matched the 2025 vulnerability
+URLs. 
+
+I also had an error when the OWASP website address was entered incorrectly.
+I checked and corrected the URL, and then the page loaded successfully.

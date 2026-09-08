@@ -1,0 +1,12 @@
+Task 5: Ethical Scraping
+
+Wikepedia does not allow bots to access certain parts of its websites
+including /w/, /api/, /trap/, sepacial pages, and some administrative
+or discussion pages. 
+
+There are also different rules for certain bots. Some bots are compeletely
+blocked from the website, while SemrushBot is told to wait five seconds between requests.
+
+The robots.txt file helps prevent bots from overloading or misusing
+a website. Ethical web scraping means following these rules, avoiding
+restricted pages, and sending requets at a resonable speed. 
