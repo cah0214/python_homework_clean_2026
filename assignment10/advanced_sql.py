@@ -72,47 +72,48 @@ try:
 
     # Task 3: Insert Transaction Based on Data
 
-    cursor.execute(
-        """
-        SELECT customer_id
-        FROM customers
-        WHERE customer_name = ?
-        """,
-        ("Perez and Sons",),
-    )
-    customer_id = cursor.fetchone()[0]
-
-    cursor.execute(
-        """
-        SELECT employee_id
-        FROM employees
-        WHERE first_name = ?
-            AND last_name = ?
-        """,
-        ("Miranda", "Harris"),
-    )
-    employee_id = cursor.fetchone()[0]
-
-    cursor.execute(
-        """
-        SELECT product_id
-        FROM products
-        ORDER BY price ASC
-        LIMIT 5
-        """
-    )
-    product_rows = cursor.fetchall()
-    product_ids = [row[0] for row in product_rows]
-
     try:
         conn.execute("BEGIN")
+        cursor.execute(
+            """
+            SELECT customer_id
+            FROM customers
+            WHERE customer_name = ?
+            """,
+            ("Perez and Sons",),
+        )
+        customer_id = cursor.fetchone()[0]
+
+        cursor.execute(
+            """
+            SELECT employee_id
+            FROM employees
+            WHERE first_name = ?
+                AND last_name = ?
+            """,
+            ("Miranda", "Harris"),
+        )
+        employee_id = cursor.fetchone()[0]
+
+        cursor.execute(
+            """
+            SELECT product_id
+            FROM products
+            ORDER BY price ASC, product_id ASC
+            LIMIT 5
+            """
+        )
+        product_rows = cursor.fetchall()
+        product_ids = [row[0] for row in product_rows]
+
+    
 
         cursor.execute(
             """
             INSERT INTO orders (
-                customer_id,
-                employee_id,
-                date
+            customer_id,
+            employee_id,
+            date
             )
             VALUES (?, ?, DATE('now'))
             RETURNING order_id
@@ -191,7 +192,7 @@ try:
         print(row)
 
 except sqlite3.Error as error:
-        print("Database error:", error)
+    print("Database error:", error)
 finally:
     if conn:
         conn.close()
